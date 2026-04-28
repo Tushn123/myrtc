@@ -1,0 +1,159 @@
+/***************************************************************************
+ * 
+ * Copyright (c) str2num.com, Inc. All Rights Reserved
+ * $Id$ 
+ * 
+ **************************************************************************/
+ 
+ 
+ 
+/**
+ * @file peer_connection.h
+ * @author str2num
+ * @version $Revision$ 
+ * @brief 
+ *  
+ **/
+
+
+
+#ifndef  __XRTCSERVER_PC_PEER_CONNECTION_H_
+#define  __XRTCSERVER_PC_PEER_CONNECTION_H_
+
+#include <string>
+#include <memory>
+
+#include <rtc_base/rtc_certificate.h>
+#include <api/media_types.h>
+
+#include "base/event_loop.h"
+#include "pc/session_description.h"
+#include "pc/transport_controller.h"
+#include "pc/stream_params.h"
+#include "video/video_receive_stream.h"
+#include "video/video_send_stream.h"
+
+namespace xrtc {
+
+struct RTCOfferAnswerOptions {
+    bool send_audio = true;
+    bool send_video = true;
+    bool recv_audio = true;
+    bool recv_video = true;
+    bool use_rtp_mux = true;
+    bool use_rtcp_mux = true;
+    bool dtls_on = true;
+};
+
+class PeerConnection : public sigslot::has_slots<>,
+                       public RtpRtcpModuleObserver
+{
+public:
+    enum class TransportMode {
+        kTransparent,
+        kLive
+    };
+
+    PeerConnection(EventLoop* el, PortAllocator* allocator);
+    
+    int Init(rtc::RTCCertificate* certificate);
+    void Destroy();
+    std::string CreateOffer(const RTCOfferAnswerOptions& options);
+    int SetRemoteSdp(const std::string& sdp);
+    int SendPacket(webrtc::MediaType media_type,
+            const webrtc::RtpPacketToSend& packet); 
+    void SetSrInfo(webrtc::MediaType media_type, uint32_t rtp_timestamp,
+            webrtc::NtpTime ntp);
+
+    SessionDescription* remote_desc() { return remote_desc_.get(); }
+    SessionDescription* local_desc() { return local_desc_.get(); }
+    
+    void AddAudioSource(const std::vector<StreamParams>& source) {
+        audio_source_ = source;
+    }
+    
+    void AddVideoSource(const std::vector<StreamParams>& source) {
+        video_source_ = source;
+    }
+    
+    void set_mode(const std::string& mode);
+    void set_pli(bool is_pli) { is_pli_ = is_pli; }
+    bool IsTransparent() const { return transport_mode_ == TransportMode::kTransparent; }
+    bool IsLive() const { return transport_mode_ == TransportMode::kLive; }
+
+    int SendRtp(const char* data, size_t len);
+    int SendRtcp(const char* data, size_t len);
+
+    sigslot::signal2<PeerConnection*, PeerConnectionState>
+        SignalConnectionState;
+    
+    // transparent
+    sigslot::signal3<PeerConnection*, rtc::CopyOnWriteBuffer*, int64_t>
+        SignalRtpPacketReceived;
+    sigslot::signal3<PeerConnection*, rtc::CopyOnWriteBuffer*, int64_t>
+        SignalRtcpPacketReceived;
+
+    // live
+    sigslot::signal3<PeerConnection*, webrtc::MediaType, const webrtc::RtpPacketReceived&>
+        SignalRtpPacket;
+    sigslot::signal4<PeerConnection*, webrtc::MediaType, uint32_t, webrtc::NtpTime>
+        SignalSrInfo;
+
+private:
+    ~PeerConnection();
+    void OnCandidateAllocateDone(TransportController* transport_controller,
+            const std::string& transport_name,
+            IceCandidateComponent component,
+            const std::vector<Candidate>& candidate);
+    
+    void OnConnectionState(TransportController*, PeerConnectionState state);
+    void OnRtpPacketReceived(TransportController*,
+            rtc::CopyOnWriteBuffer* packet, int64_t ts);
+    void OnRtcpPacketReceived(TransportController*,
+            rtc::CopyOnWriteBuffer* packet, int64_t ts);
+ 
+    void OnRtpPacket(webrtc::MediaType media_type,
+            const webrtc::RtpPacketReceived& packet) override;
+    void OnLocalRtcpPacket(webrtc::MediaType media_type,
+            const uint8_t* data, size_t len) override;
+    void OnFrame(std::unique_ptr<RtpFrameObject> frame) override;
+    void OnSrInfo(webrtc::MediaType media_type,
+            uint32_t rtp_timestamp, webrtc::NtpTime ntp) override;
+
+    webrtc::MediaType GetMediaType(uint32_t ssrc) const;
+    void CreateVideoReceiveStream(VideoContentDescription* video_content);
+    void CreateVideoSendStream(VideoContentDescription* video_content);
+    
+    friend void DestroyTimerCb(EventLoop* el, TimerWatcher* w, void* data);
+
+private:
+    EventLoop* el_;
+    webrtc::Clock* clock_;
+    bool is_dtls_ = true;
+    bool is_pli_ = false;
+    TransportMode transport_mode_ = TransportMode::kLive;
+    std::unique_ptr<SessionDescription> local_desc_;
+    std::unique_ptr<SessionDescription> remote_desc_;
+    rtc::RTCCertificate* certificate_ = nullptr;
+    std::unique_ptr<TransportController> transport_controller_;
+    TimerWatcher* destroy_timer_ = nullptr;
+    std::vector<StreamParams> audio_source_;
+    std::vector<StreamParams> video_source_;
+    
+    uint32_t remote_audio_ssrc_ = 0;
+    uint32_t remote_video_ssrc_ = 0;
+    uint32_t remote_video_rtx_ssrc_ = 0;
+    
+    uint32_t local_audio_ssrc_ = 0;
+    uint32_t local_video_ssrc_ = 0;
+    uint32_t local_video_rtx_ssrc_ = 0;
+
+    std::unique_ptr<VideoReceiveStream> video_receive_stream_;
+    std::unique_ptr<VideoSendStream> video_send_stream_;
+};
+
+} // namespace xrtc
+
+#endif  //__XRTCSERVER_PC_PEER_CONNECTION_H_
+
+
