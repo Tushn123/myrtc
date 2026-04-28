@@ -1,0 +1,164 @@
+/***************************************************************************
+ * 
+ * Copyright (c) str2num.com, Inc. All Rights Reserved
+ * $Id$ 
+ * 
+ **************************************************************************/
+ 
+ 
+ 
+/**
+ * @file rtp_rtcp_impl.cpp
+ * @author str2num
+ * @version $Revision$ 
+ * @brief 
+ *  
+ **/
+
+#include "modules/rtp_rtcp/rtp_rtcp_impl.h"
+
+#include <rtc_base/logging.h>
+
+#include "base/conf.h"
+
+extern xrtc::GeneralConf* g_conf;
+
+namespace xrtc {
+
+namespace {
+
+void RtcpReportCb(EventLoop* /*el*/, TimerWatcher* /*w*/, void* data) {
+    RtpRtcpImpl* rtp_rtcp = (RtpRtcpImpl*)data;
+    rtp_rtcp->TimeToSendRTCP();
+}
+
+void RequestPliCb(EventLoop* /*el*/, TimerWatcher* /*w*/, void* data) {
+    RtpRtcpImpl* rtp_rtcp = (RtpRtcpImpl*)data;
+    rtp_rtcp->SendRTCP(webrtc::kRtcpPli);
+}
+
+} // namespace
+
+RtpRtcpImpl::RtpRtcpImpl(const RtpRtcpConfig& config)
+    : el_(config.el),
+    rtcp_sender_(config),
+    rtcp_receiver_(config),
+    rtp_sender_(config)
+{
+    if (config.request_pli_interval_ms > 0) {
+        request_pli_timer_ = el_->CreateTimer(RequestPliCb, this, true);
+        el_->StartTimer(request_pli_timer_, config.request_pli_interval_ms * 1000);
+    }
+}
+
+RtpRtcpImpl::~RtpRtcpImpl() {
+    if (rtcp_report_timer_) {
+        el_->DeleteTimer(rtcp_report_timer_);
+        rtcp_report_timer_ = nullptr;
+    }
+
+    if (request_pli_timer_) {
+        el_->DeleteTimer(request_pli_timer_);
+        request_pli_timer_ = nullptr;
+    }
+}
+
+void RtpRtcpImpl::TimeToSendRTCP() {
+    rtcp_sender_.SendRTCP(GetFeedbackState(), webrtc::kRtcpReport);
+    uint32_t interval = rtcp_sender_.cur_report_interval_ms();
+    RTC_LOG(LS_WARNING) << "=======cur report interval ms: " << interval;
+    el_->StartTimer(rtcp_report_timer_, interval * 1000);
+}
+
+void RtpRtcpImpl::SendNack(const std::vector<uint16_t>& nack_list) {
+    rtcp_sender_.SendRTCP(GetFeedbackState(), webrtc::kRtcpNack,
+            nack_list.size(), nack_list.data()); 
+}
+
+void RtpRtcpImpl::SendRTCP(webrtc::RTCPPacketType packet_type) {
+    rtcp_sender_.SendRTCP(GetFeedbackState(), packet_type);
+}
+
+void RtpRtcpImpl::SetRTCPStatus(webrtc::RtcpMode method) {
+    if (method == webrtc::RtcpMode::kOff) {
+        if (rtcp_report_timer_) {
+            el_->DeleteTimer(rtcp_report_timer_);
+            rtcp_report_timer_ = nullptr;
+        }
+    } else {
+        if (!rtcp_report_timer_) {
+            rtcp_report_timer_ = el_->CreateTimer(RtcpReportCb, this, true);
+            el_->StartTimer(rtcp_report_timer_, g_conf->rtcp_report_timer_interval * 1000);
+        }
+    }
+
+    rtcp_sender_.SetRtcpStatus(method);
+}
+
+void RtpRtcpImpl::IncomingRtcpPacket(const uint8_t* data, size_t len) {
+    rtcp_receiver_.IncomingRtcpPacket(data, len);
+}
+
+void RtpRtcpImpl::SetRemoteSsrc(uint32_t ssrc) {
+    rtcp_sender_.SetRemoteSsrc(ssrc);
+    rtcp_receiver_.SetRemoteSsrc(ssrc);
+}
+
+void RtpRtcpImpl::SetSendingStatus(bool sending) {
+    rtcp_sender_.SetSendingStatus(sending);
+}
+
+void RtpRtcpImpl::UpdateRtpStat(int64_t now_ms, const webrtc::RtpPacketToSend& packet) {
+    rtp_sender_.UpdateRtpStat(now_ms, packet);
+}
+
+void RtpRtcpImpl::SetSrInfo(uint32_t rtp_timestamp, webrtc::NtpTime ntp) {
+    rtcp_sender_.SetSrInfo(rtp_timestamp, ntp);
+}
+
+RTCPSender::FeedbackState RtpRtcpImpl::GetFeedbackState() {
+    RTCPSender::FeedbackState state;
+    
+    webrtc::StreamDataCounters rtp_stats;
+    webrtc::StreamDataCounters rtx_stats;
+    rtp_sender_.GetDataCounters(&rtp_stats, &rtx_stats);
+    state.packets_sent = rtp_stats.transmitted.packets +
+        rtx_stats.transmitted.packets;
+    state.media_bytes_sent = rtp_stats.transmitted.payload_bytes +
+        rtx_stats.transmitted.payload_bytes;
+
+    uint32_t receive_ntp_secs;
+    uint32_t receive_ntp_frac;
+    state.remote_sr = 0;
+
+    if (rtcp_receiver_.NTP(&receive_ntp_secs,
+                           &receive_ntp_frac,
+                           &state.last_rr_ntp_secs,
+                           &state.last_rr_ntp_frac,
+                           nullptr))
+    {
+        state.remote_sr = ((receive_ntp_secs & 0x0000FFFF) << 16) +
+                    ((receive_ntp_frac & 0xFFFF0000) >> 16);
+    }
+
+    return state;
+}
+
+} // namespace xrtc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

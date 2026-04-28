@@ -1,0 +1,55 @@
+# =========================
+# 递归排除构建目录（核心）
+# =========================
+**/build/**
+**/out/**
+
+# =========================
+# C++ 通用
+# =========================
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.pdb
+*.ilk
+
+# =========================
+# Visual Studio / SLN
+# =========================
+*.suo
+*.user
+*.vcxproj.user
+*.vcxproj.filters
+*.sln.docstates
+
+# =========================
+# CMake
+# =========================
+CMakeCache.txt
+CMakeFiles/**
+CMakeScripts/**
+cmake_install.cmake
+compile_commands.json
+
+# =========================
+# Qt
+# =========================
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+*.pro.user
+*.qbs.user
+.idea/**
+
+# =========================
+# OS & IDE
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/*.json
