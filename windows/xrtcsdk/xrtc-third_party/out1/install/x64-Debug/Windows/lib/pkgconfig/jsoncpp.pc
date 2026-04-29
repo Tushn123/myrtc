@@ -1,0 +1,11 @@
+prefix=D:/prj/xrtc-third_party/out/install/x64-Debug/Windows
+exec_prefix=D:/prj/xrtc-third_party/out/install/x64-Debug/Windows
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: jsoncpp
+Description: A C++ library for interacting with JSON
+Version: 
+URL: https://github.com/open-source-parsers/jsoncpp
+Libs: -L${libdir} -ljsoncpp
+Cflags: -I${includedir}
