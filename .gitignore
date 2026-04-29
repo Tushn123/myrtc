@@ -21,6 +21,9 @@
 # =========================
 # Visual Studio / SLN
 # =========================
+.vs/
+*.ipch
+*.VC.db
 *.suo
 *.user
 *.vcxproj.user
