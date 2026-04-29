@@ -1,5 +1,1 @@
-﻿  main.cpp
-C:\shn\workspace\source\myrtc\windows\WebrtcFFmpegRecord\main.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\shn\workspace\source\myrtc\windows\WebrtcFFmpegRecord\include\webrtc\media\base\codec.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\shn\workspace\source\myrtc\windows\WebrtcFFmpegRecord\include\ffmpeg\libavutil\rational.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  WebrtcFFmpegRecord.vcxproj -> C:\shn\workspace\source\myrtc\windows\WebrtcFFmpegRecord\x64\Debug\WebrtcFFmpegRecord.exe
+﻿  WebrtcFFmpegRecord.vcxproj -> C:\shn\workspace\source\myrtc\windows\WebrtcFFmpegRecord\x64\Debug\WebrtcFFmpegRecord.exe

@@ -92,12 +92,13 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <StringPooling>false</StringPooling>
       <ControlFlowGuard>false</ControlFlowGuard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\webrtc;$(ProjectDir)lib\ffmpeg</AdditionalLibraryDirectories>
-      <AdditionalDependencies>avcodec.lib;avformat.lib;avutil.lib;avdevice.lib;avfilter.lib;swresample.lib;swscale.lib;ws2_32.lib;winmm.lib;crypt32.lib;secur32.lib;webrtc.lib;Advapi32.lib;User32.lib;Gdi32.lib;Ws2_32.lib;Crypt32.lib;Iphlpapi.lib;Shlwapi.lib;Ole32.lib;Oleaut32.lib;Secur32.lib;Winmm.lib</AdditionalDependencies>
+      <AdditionalDependencies>avcodec.lib;avformat.lib;avutil.lib;avdevice.lib;avfilter.lib;swresample.lib;swscale.lib;webrtc.lib;msdmo.lib;strmiids.lib;dmoguids.lib;wmcodecdspuuid.lib;ws2_32.lib;winmm.lib;crypt32.lib;secur32.lib;Advapi32.lib;User32.lib;Gdi32.lib;Iphlpapi.lib;Shlwapi.lib;Ole32.lib;Oleaut32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -126,12 +127,13 @@
       <AdditionalIncludeDirectories>$(ProjectDir)include\webrtc;$(ProjectDir)include\ffmpeg;$(ProjectDir)include\webrtc\third_party\jsoncpp\generated;$(ProjectDir)include\webrtc\third_party\jsoncpp\source\include;$(ProjectDir)include\webrtc\third_party\libyuv\include;$(ProjectDir)include\webrtc\third_party\abseil-cpp</AdditionalIncludeDirectories>
       <StringPooling>false</StringPooling>
       <ControlFlowGuard>false</ControlFlowGuard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)lib\webrtc;$(ProjectDir)lib\ffmpeg</AdditionalLibraryDirectories>
-      <AdditionalDependencies>avcodec.lib;avformat.lib;avutil.lib;avdevice.lib;avfilter.lib;swresample.lib;swscale.lib;ws2_32.lib;winmm.lib;crypt32.lib;secur32.lib;webrtc.lib;Advapi32.lib;User32.lib;Gdi32.lib;Ws2_32.lib;Crypt32.lib;Iphlpapi.lib;Shlwapi.lib;Ole32.lib;Oleaut32.lib;Secur32.lib;Winmm.lib</AdditionalDependencies>
+      <AdditionalDependencies>avcodec.lib;avformat.lib;avutil.lib;avdevice.lib;avfilter.lib;swresample.lib;swscale.lib;webrtc.lib;msdmo.lib;strmiids.lib;dmoguids.lib;wmcodecdspuuid.lib;ws2_32.lib;winmm.lib;crypt32.lib;secur32.lib;Advapi32.lib;User32.lib;Gdi32.lib;Iphlpapi.lib;Shlwapi.lib;Ole32.lib;Oleaut32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
