@@ -21,9 +21,12 @@
 # =========================
 # Visual Studio / SLN
 # =========================
+<<<<<<< HEAD
 .vs/
 *.ipch
 *.VC.db
+=======
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
 *.suo
 *.user
 *.vcxproj.user
@@ -56,4 +59,7 @@ ui_*.h
 Thumbs.db
 .vscode/*
 !.vscode/*.json
+<<<<<<< HEAD
 *.pem
+=======
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048

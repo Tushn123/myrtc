@@ -37,27 +37,31 @@ public:
 
     const std::string& name() { return name_; } 
     const rtc::IPAddress& ip() { return ip_; }
+<<<<<<< HEAD
     bool bind_inaddr_any() const { return bind_inaddr_any_; }
+=======
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
     
-    std::string ToString() {
         return name_ + ":" + ip_.ToString();
-    }
-
 private:
     std::string name_;
     rtc::IPAddress ip_;
+<<<<<<< HEAD
     bool bind_inaddr_any_ = false;
+=======
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
 };
 
 class NetworkManager {
 public:
-    NetworkManager();
     ~NetworkManager();
-   
-    const std::vector<Network*>& GetNetworks() { return network_list_; }
+<<<<<<< HEAD
     // advertise_ipv4: when no interface yields a candidate, add this address for
     // ICE host candidate (bind all interfaces, advertise this IP in SDP).
     int CreateNetworks(const std::string& advertise_ipv4 = "");
+=======
+    int CreateNetworks();
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
 
 private:
     std::vector<Network*> network_list_;

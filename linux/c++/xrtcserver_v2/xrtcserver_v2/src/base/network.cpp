@@ -26,7 +26,6 @@ namespace xrtc {
 
 namespace {
 
-bool ParseIpv4String(const std::string& s, rtc::IPAddress* out) {
     if (!out || s.empty()) {
         return false;
     }
@@ -41,8 +40,6 @@ bool ParseIpv4String(const std::string& s, rtc::IPAddress* out) {
 } // namespace
 
 NetworkManager::NetworkManager() = default;
-
-NetworkManager::~NetworkManager() {
     for (auto network : network_list_) {
         delete network;
     }
@@ -50,27 +47,27 @@ NetworkManager::~NetworkManager() {
     network_list_.clear();
 }
 
+<<<<<<< HEAD
 int NetworkManager::CreateNetworks(const std::string& advertise_ipv4) {
+=======
+int NetworkManager::CreateNetworks() {
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
     struct ifaddrs* interface;
-    int err = getifaddrs(&interface);
     if (err != 0) {
-        RTC_LOG(LS_WARNING) << "getifaddrs error: " << strerror(errno) 
-            << ", errno: " << errno;
-        return -1;
     }
     
     for (auto cur = interface; cur != nullptr; cur = cur->ifa_next) {
+<<<<<<< HEAD
         if (!cur->ifa_addr || cur->ifa_addr->sa_family != AF_INET) {
+=======
+        if (cur->ifa_addr->sa_family != AF_INET) {
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
             continue;
         }
 
         struct sockaddr_in* addr = (struct sockaddr_in*)(cur->ifa_addr);
         rtc::IPAddress ip_address(addr->sin_addr);
-        
         if (rtc::IPIsPrivateNetwork(ip_address) || rtc::IPIsLoopback(ip_address)) {
-            continue;
-        }
-        
         Network* network = new Network(cur->ifa_name, ip_address);
 
         RTC_LOG(LS_INFO) << "gathered network interface: " << network->ToString();
@@ -80,6 +77,7 @@ int NetworkManager::CreateNetworks(const std::string& advertise_ipv4) {
     
     freeifaddrs(interface);
 
+<<<<<<< HEAD
     if (network_list_.empty() && !advertise_ipv4.empty()) {
         rtc::IPAddress pub;
         if (!ParseIpv4String(advertise_ipv4, &pub)) {
@@ -93,10 +91,11 @@ int NetworkManager::CreateNetworks(const std::string& advertise_ipv4) {
         }
         auto* network = new Network("advertise", pub, true);
         RTC_LOG(LS_INFO) << "no public interface found; ICE host candidate uses "
-            << "advertise_ip=" << advertise_ipv4 << " (bind INADDR_ANY)";
         network_list_.push_back(network);
     }
 
+=======
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
     return 0;
 }
 

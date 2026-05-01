@@ -31,9 +31,12 @@ struct GeneralConf {
     bool log_to_stderr;
     int ice_min_port = 0;
     int ice_max_port = 0;
+<<<<<<< HEAD
     // Public IPv4 to put in ICE host candidates when no NIC has a public address
     // (e.g. Aliyun ECS with only 172.x on eth0). UDP binds 0.0.0.0; SDP uses this IP.
     std::string ice_advertise_ipv4;
+=======
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
     int rtcp_report_timer_interval = 100;
 };
 

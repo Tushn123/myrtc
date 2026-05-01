@@ -21,6 +21,10 @@ type xrtcPullReq struct {
 	StreamName string `json:"stream_name"`
 	Audio      int    `json:"audio"`
 	Video      int    `json:"video"`
+<<<<<<< HEAD
+=======
+	IsDtls     int    `json:"is_dtls"`
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
 }
 
 type xrtcPullResp struct {
@@ -86,12 +90,32 @@ func (*pullAction) Execute(w http.ResponseWriter, cr *framework.ComRequest) {
 		video = 1
 	}
 
+<<<<<<< HEAD
+=======
+	var strDtls string
+        var isDtls int
+
+        if values, ok := r.Form["strDtls"]; ok {
+                strDtls = values[0]
+        }
+
+        if "" == strDtls || "0" == strDtls {
+                isDtls = 0
+        } else {
+                isDtls = 1
+        }
+
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
 	req := xrtcPullReq{
 		Cmdno:      CMDNO_PULL,
 		Uid:        uid,
 		StreamName: streamName,
 		Audio:      audio,
 		Video:      video,
+<<<<<<< HEAD
+=======
+		IsDtls:     isDtls,
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
 	}
 
 	var resp xrtcPullResp

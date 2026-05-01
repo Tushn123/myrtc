@@ -1,0 +1,5 @@
+Log file created at: 2026/05/01 20:27:50
+Running on machine: shn
+Binary: Built with gc go1.18.1 for linux/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+W0501 20:27:50.111594   73002 log.go:95] logId[2759597192] url[/signaling/push] referer[https://tushn.cn:8081/xrtcclient/push?uid=211&streamName=xrtc_985&audio=1&video=1&isDtls=1] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:13949] realClientIP[220.196.97.137:13949] video[1] isDtls[1] uid[211] streamName[xrtc_985] audio[1] errNo[-2] errMsg[backend process error:dial tcp 127.0.0.1:9000: connect: connection refused] request process failed

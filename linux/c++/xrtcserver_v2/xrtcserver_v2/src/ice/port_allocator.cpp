@@ -17,20 +17,27 @@
 
 #include "ice/port_allocator.h"
 
+<<<<<<< HEAD
 #include "base/conf.h"
 
 extern xrtc::GeneralConf* g_conf;
 
+=======
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
 namespace xrtc {
 
 PortAllocator::PortAllocator() :
     network_manager_(new NetworkManager())
 {
+<<<<<<< HEAD
     std::string advertise;
     if (g_conf) {
         advertise = g_conf->ice_advertise_ipv4;
     }
     network_manager_->CreateNetworks(advertise);
+=======
+    network_manager_->CreateNetworks();
+>>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
 }
 
 PortAllocator::~PortAllocator() = default;
