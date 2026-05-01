@@ -21,6 +21,7 @@ type xrtcPushReq struct {
 	StreamName string `json:"stream_name"`
 	Audio      int    `json:"audio"`
 	Video      int    `json:"video"`
+	IsDtls     int    `json:"is_dtls"`
 }
 
 type xrtcPushResp struct {
@@ -86,12 +87,27 @@ func (*pushAction) Execute(w http.ResponseWriter, cr *framework.ComRequest) {
 		video = 1
 	}
 
+	var strDtls string
+	var isDtls int
+
+        if values, ok := r.Form["strDtls"]; ok {
+                strDtls = values[0]
+        }
+
+        if "" == strDtls || "0" == strDtls {
+                isDtls = 0
+        } else {
+                isDtls = 1
+        }
+
+
 	req := xrtcPushReq{
 		Cmdno:      CMDNO_PUSH,
 		Uid:        uid,
 		StreamName: streamName,
 		Audio:      audio,
 		Video:      video,
+		IsDtls:     isDtls,
 	}
 
 	var resp xrtcPushResp

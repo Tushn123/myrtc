@@ -1,0 +1,58 @@
+Log file created at: 2026/05/01 20:35:40
+Running on machine: shn
+Binary: Built with gc go1.18.1 for linux/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0501 20:35:40.445247   73089 http_server.go:99] start https server on port:8081
+I0501 20:35:40.445823   73089 http_server.go:94] start http server on port:8080
+I0501 20:35:45.096359   73089 log.go:90] logId[4162347735] url[/xrtcclient/push] referer[] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:63168] realClientIP[220.196.97.137:63168] audio[1] video[1] isDtls[1] uid[211] streamName[xrtc_985] totalCost[0.794ms] 
+I0501 20:35:50.307265   73089 log.go:90] logId[3599710801] url[/xrtcclient/push] referer[] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:63168] realClientIP[220.196.97.137:63168] uid[211] streamName[xrtc_985] audio[1] video[1] isDtls[0] totalCost[0.715ms] 
+I0501 20:35:53.715131   73089 log.go:90] logId[962739550] url[/signaling/push] referer[https://tushn.cn:8081/xrtcclient/push?uid=211&streamName=xrtc_985&audio=1&video=1&isDtls=0] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:63168] realClientIP[220.196.97.137:63168] uid[211] streamName[xrtc_985] audio[1] video[1] isDtls[0] resp[{"errNo":0,"errMsg":"success","data":{"type":"offer","sdp":"v=0\r\no=- 0 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE audio video\r\na=msid-semantic: WMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=candidate:3972826451 1 udp 2113937151 8.153.161.173 10026 typ host\r\na=ice-ufrag:o7iZ\r\na=ice-pwd:jTTo4NJon+tqP7xlvPb7sdx0\r\na=fingerprint:sha-256 C7:70:35:F2:5F:F0:EB:B2:B1:F4:9C:0D:E0:41:3F:54:5F:2C:20:12:5B:42:A3:AA:DE:8E:B8:4A:FF:B4:AE:59\r\na=setup:actpass\r\na=mid:audio\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\na=rtcp-fb:111 transport-cc\r\na=fmtp:111 minptime=10;useinbandfec=1\r\nm=video 9 UDP/TLS/RTP/SAVPF 107 99\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:o7iZ\r\na=ice-pwd:jTTo4NJon+tqP7xlvPb7sdx0\r\na=fingerprint:sha-256 C7:70:35:F2:5F:F0:EB:B2:B1:F4:9C:0D:E0:41:3F:54:5F:2C:20:12:5B:42:A3:AA:DE:8E:B8:4A:FF:B4:AE:59\r\na=setup:actpass\r\na=mid:video\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:107 H264/90000\r\na=rtcp-fb:107 goog-remb\r\na=rtcp-fb:107 transport-cc\r\na=rtcp-fb:107 ccm fir\r\na=rtcp-fb:107 nack\r\na=rtcp-fb:107 nack pli\r\na=fmtp:107 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f\r\na=rtpmap:99 rtx/90000\r\na=fmtp:99 apt=107\r\n"}}] totalCost[5.440ms] 
+I0501 20:35:57.415202   73089 log.go:90] logId[2129929954] url[/signaling/sendanswer] referer[https://tushn.cn:8081/xrtcclient/push?uid=211&streamName=xrtc_985&audio=1&video=1&isDtls=0] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:63168] realClientIP[220.196.97.137:63168] answer[v=0
+o=- 3397445686827234039 2 IN IP4 127.0.0.1
+s=-
+t=0 0
+a=group:BUNDLE audio video
+a=msid-semantic: WMS da70bfce-5fd9-46d9-84df-e52550307f73
+m=audio 9 UDP/TLS/RTP/SAVPF 111
+c=IN IP4 0.0.0.0
+a=rtcp:9 IN IP4 0.0.0.0
+a=ice-ufrag:gu62
+a=ice-pwd:5r3XKF9mM7O0kNNK3GeiOvsA
+a=ice-options:trickle
+a=fingerprint:sha-256 D0:8F:CB:D4:33:FB:7E:1F:87:AF:ED:F9:D6:CB:D7:38:28:6C:AF:FC:55:5D:1A:53:A2:32:72:49:A8:B0:9C:1E
+a=setup:active
+a=mid:audio
+a=sendonly
+a=msid:da70bfce-5fd9-46d9-84df-e52550307f73 7f333fe2-5a80-443f-b126-175e1aed4d1a
+a=rtcp-mux
+a=rtpmap:111 opus/48000/2
+a=rtcp-fb:111 transport-cc
+a=fmtp:111 minptime=10;useinbandfec=1
+a=ssrc:2852112583 cname:enF5uK6F/i1/+uVa
+m=video 9 UDP/TLS/RTP/SAVPF 107 99
+c=IN IP4 0.0.0.0
+a=rtcp:9 IN IP4 0.0.0.0
+a=ice-ufrag:gu62
+a=ice-pwd:5r3XKF9mM7O0kNNK3GeiOvsA
+a=ice-options:trickle
+a=fingerprint:sha-256 D0:8F:CB:D4:33:FB:7E:1F:87:AF:ED:F9:D6:CB:D7:38:28:6C:AF:FC:55:5D:1A:53:A2:32:72:49:A8:B0:9C:1E
+a=setup:active
+a=mid:video
+a=sendonly
+a=msid:da70bfce-5fd9-46d9-84df-e52550307f73 193d2ad4-8b1e-42a0-9317-bec2756fb67d
+a=rtcp-mux
+a=rtpmap:107 H264/90000
+a=rtcp-fb:107 goog-remb
+a=rtcp-fb:107 transport-cc
+a=rtcp-fb:107 ccm fir
+a=rtcp-fb:107 nack
+a=rtcp-fb:107 nack pli
+a=fmtp:107 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f
+a=rtpmap:99 rtx/90000
+a=fmtp:99 apt=107
+a=ssrc-group:FID 2483326483 62386341
+a=ssrc:2483326483 cname:enF5uK6F/i1/+uVa
+a=ssrc:62386341 cname:enF5uK6F/i1/+uVa
+] type[push] uid[211] streamName[xrtc_985] resp[{"errNo":0,"errMsg":"success","data":null}] totalCost[3.542ms] 
+W0501 20:37:12.980059   73089 log.go:95] logId[4081263173] url[/signaling/stoppush] referer[https://tushn.cn:8081/xrtcclient/push?uid=211&streamName=xrtc_985&audio=1&video=1&isDtls=0] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:63168] realClientIP[220.196.97.137:63168] uid[211] streamName[xrtc_985] errNo[-2] errMsg[backend process error:dial tcp 127.0.0.1:9000: connect: connection refused] request process failed
+I0501 20:37:12.980754   73089 log.go:90] logId[4081263173] url[/signaling/stoppush] referer[https://tushn.cn:8081/xrtcclient/push?uid=211&streamName=xrtc_985&audio=1&video=1&isDtls=0] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:63168] realClientIP[220.196.97.137:63168] uid[211] streamName[xrtc_985] errNo[-2] errMsg[backend process error:dial tcp 127.0.0.1:9000: connect: connection refused] totalCost[1.256ms] 

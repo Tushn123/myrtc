@@ -11,6 +11,7 @@ var uid = $("#uid").val();
 var streamName = $("#streamName").val();
 var audio = $("#audio").val();
 var video = $("#video").val();
+var isDtls = $("#isDtls").val();
 var offer = "";
 var pc;
 const config = {};
@@ -21,7 +22,7 @@ function startPull() {
     console.log("send pull: /signaling/pull");
 
     $.post("/signaling/pull",
-        {"uid": uid, "streamName": streamName, "audio": audio, "video": video},
+        {"uid": uid, "streamName": streamName, "audio": audio, "video": video, "isDtls": isDtls},
         function(data, textStatus) {
             console.log("push response: " + JSON.stringify(data));
             if ("success" == textStatus && 0 == data.errNo) {

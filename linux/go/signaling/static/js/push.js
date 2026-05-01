@@ -11,6 +11,7 @@ var uid = $("#uid").val();
 var streamName = $("#streamName").val();
 var audio = $("#audio").val();
 var video = $("#video").val();
+var isDtls = $("#isDtls").val();
 var offer = "";
 var pc;
 const config = {};
@@ -21,7 +22,7 @@ function startPush() {
     console.log("send push: /signaling/push");
 
     $.post("/signaling/push",
-        {"uid": uid, "streamName": streamName, "audio": audio, "video": video},
+        {"uid": uid, "streamName": streamName, "audio": audio, "video": video, "isDtls": isDtls},
         function(data, textStatus) {
             console.log("push response: " + JSON.stringify(data));
             if ("success" == textStatus && 0 == data.errNo) {
@@ -164,7 +165,15 @@ function handleError(error) {
 function setRemoteDescriptionSuccess() {
     console.log("pc set remote description success");
     console.log("request screen share");
-    window.postMessage({type: "SS_UI_REQUEST", text: "push"}, "*");
+    // 弃用屏幕共享插件
+    // window.postMessage({type: "SS_UI_REQUEST", text: "push"}, "*");
+    // 无需安装插件
+    var constraints = {
+        audio: false,
+	video: true,
+    };
+    navigator.mediaDevices.getDisplayMedia(constraints).then(
+        handleSuccess).catch(handleError);
 }
 
 function createSessionDescriptionSuccess(answer) {

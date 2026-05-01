@@ -1,0 +1,10 @@
+Log file created at: 2026/05/01 20:27:27
+Running on machine: shn
+Binary: Built with gc go1.18.1 for linux/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0501 20:27:27.477705   73002 http_server.go:99] start https server on port:8081
+I0501 20:27:27.480401   73002 http_server.go:94] start http server on port:8080
+I0501 20:27:33.023108   73002 log.go:90] logId[89527990] url[/xrtcclient/push] referer[] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:13949] realClientIP[220.196.97.137:13949] uid[211] streamName[xrtc_985] audio[1] video[1] totalCost[0.623ms] 
+I0501 20:27:48.041271   73002 log.go:90] logId[1145153465] url[/xrtcclient/push] referer[] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:13949] realClientIP[220.196.97.137:13949] uid[211] streamName[xrtc_985] audio[1] video[1] isDtls[1] totalCost[0.458ms] 
+W0501 20:27:50.111594   73002 log.go:95] logId[2759597192] url[/signaling/push] referer[https://tushn.cn:8081/xrtcclient/push?uid=211&streamName=xrtc_985&audio=1&video=1&isDtls=1] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:13949] realClientIP[220.196.97.137:13949] video[1] isDtls[1] uid[211] streamName[xrtc_985] audio[1] errNo[-2] errMsg[backend process error:dial tcp 127.0.0.1:9000: connect: connection refused] request process failed
+I0501 20:27:50.112336   73002 log.go:90] logId[2759597192] url[/signaling/push] referer[https://tushn.cn:8081/xrtcclient/push?uid=211&streamName=xrtc_985&audio=1&video=1&isDtls=1] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:13949] realClientIP[220.196.97.137:13949] video[1] isDtls[1] uid[211] streamName[xrtc_985] audio[1] errNo[-2] errMsg[backend process error:dial tcp 127.0.0.1:9000: connect: connection refused] totalCost[1.662ms] 

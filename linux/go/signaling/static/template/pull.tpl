@@ -47,6 +47,7 @@
             streamName={{.streamName}}
             audio={{.audio}}
             video={{.video}}
+            isDtls={{.isDtls}}
         </span>
     </div>
     <span id="tips1"></span> <br>
@@ -64,6 +65,7 @@
     <input type="hidden" id="streamName" value="{{.streamName}}"/>
     <input type="hidden" id="audio" value="{{.audio}}"/>
     <input type="hidden" id="video" value="{{.video}}"/>
+    <input type="hidden" id="isDtls" value="{{.isDtls}}"/>
 
     <script src="/static/js/adapter.js"></script>
     <script src="/static/js/jquery-2.1.1.min.js"></script>

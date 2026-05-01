@@ -1,0 +1,56 @@
+Log file created at: 2026/05/01 20:11:51
+Running on machine: shn
+Binary: Built with gc go1.18.1 for linux/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0501 20:11:51.336451   72619 http_server.go:99] start https server on port:8081
+I0501 20:11:51.337929   72619 http_server.go:94] start http server on port:8080
+I0501 20:11:52.108295   72619 log.go:90] logId[207606379] url[/xrtcclient/push] referer[] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:44480] realClientIP[220.196.97.137:44480] streamName[xrtc_985] audio[1] video[1] uid[211] totalCost[1.256ms] 
+I0501 20:11:56.674970   72619 log.go:90] logId[2685907822] url[/xrtcclient/push] referer[] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:44480] realClientIP[220.196.97.137:44480] uid[211] streamName[xrtc_985] audio[1] video[1] totalCost[0.441ms] 
+I0501 20:12:08.409986   72619 log.go:90] logId[2103637306] url[/signaling/push] referer[https://tushn.cn:8081/xrtcclient/push?uid=211&streamName=xrtc_985&audio=1&video=1] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:44480] realClientIP[220.196.97.137:44480] isDtls[1] uid[211] streamName[xrtc_985] audio[1] video[1] resp[{"errNo":0,"errMsg":"success","data":{"type":"offer","sdp":"v=0\r\no=- 0 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE audio video\r\na=msid-semantic: WMS\r\nm=audio 9 UDP/TLS/RTP/SAVPF 111\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:DBT3\r\na=ice-pwd:JQPL1ijAgL+CirLnFyW6tRnC\r\na=fingerprint:sha-256 FF:0B:C4:DE:73:96:54:19:32:26:7E:49:61:C9:52:44:25:F5:55:B7:F8:00:81:63:8B:51:B5:FD:7D:42:50:83\r\na=setup:actpass\r\na=mid:audio\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:111 opus/48000/2\r\na=rtcp-fb:111 transport-cc\r\na=fmtp:111 minptime=10;useinbandfec=1\r\nm=video 9 UDP/TLS/RTP/SAVPF 107 99\r\nc=IN IP4 0.0.0.0\r\na=rtcp:9 IN IP4 0.0.0.0\r\na=ice-ufrag:DBT3\r\na=ice-pwd:JQPL1ijAgL+CirLnFyW6tRnC\r\na=fingerprint:sha-256 FF:0B:C4:DE:73:96:54:19:32:26:7E:49:61:C9:52:44:25:F5:55:B7:F8:00:81:63:8B:51:B5:FD:7D:42:50:83\r\na=setup:actpass\r\na=mid:video\r\na=recvonly\r\na=rtcp-mux\r\na=rtpmap:107 H264/90000\r\na=rtcp-fb:107 goog-remb\r\na=rtcp-fb:107 transport-cc\r\na=rtcp-fb:107 ccm fir\r\na=rtcp-fb:107 nack\r\na=rtcp-fb:107 nack pli\r\na=fmtp:107 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f\r\na=rtpmap:99 rtx/90000\r\na=fmtp:99 apt=107\r\n"}}] totalCost[7.220ms] 
+I0501 20:12:13.702109   72619 log.go:90] logId[2206910010] url[/signaling/sendanswer] referer[https://tushn.cn:8081/xrtcclient/push?uid=211&streamName=xrtc_985&audio=1&video=1] cookie[] ua[Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36] clientIP[220.196.97.137:44480] realClientIP[220.196.97.137:44480] uid[211] streamName[xrtc_985] answer[v=0
+o=- 5241144553545914155 2 IN IP4 127.0.0.1
+s=-
+t=0 0
+a=group:BUNDLE audio video
+a=msid-semantic: WMS 777ddc27-23b0-4a54-950f-52e2d21d1201
+m=audio 9 UDP/TLS/RTP/SAVPF 111
+c=IN IP4 0.0.0.0
+a=rtcp:9 IN IP4 0.0.0.0
+a=ice-ufrag:eYZd
+a=ice-pwd:CsqNnu4h0wPec4GpEwYUvF5o
+a=ice-options:trickle
+a=fingerprint:sha-256 34:98:91:34:D5:EF:C3:C8:70:93:D9:45:4D:46:E2:B5:E8:93:E9:48:D9:F2:01:E9:D6:80:E2:FF:3C:CF:FE:6C
+a=setup:active
+a=mid:audio
+a=sendonly
+a=msid:777ddc27-23b0-4a54-950f-52e2d21d1201 cb41589a-b1ac-4c36-b079-48330234e66f
+a=rtcp-mux
+a=rtpmap:111 opus/48000/2
+a=rtcp-fb:111 transport-cc
+a=fmtp:111 minptime=10;useinbandfec=1
+a=ssrc:3390002785 cname:MCZO5MLYf1vIXRgO
+m=video 9 UDP/TLS/RTP/SAVPF 107 99
+c=IN IP4 0.0.0.0
+a=rtcp:9 IN IP4 0.0.0.0
+a=ice-ufrag:eYZd
+a=ice-pwd:CsqNnu4h0wPec4GpEwYUvF5o
+a=ice-options:trickle
+a=fingerprint:sha-256 34:98:91:34:D5:EF:C3:C8:70:93:D9:45:4D:46:E2:B5:E8:93:E9:48:D9:F2:01:E9:D6:80:E2:FF:3C:CF:FE:6C
+a=setup:active
+a=mid:video
+a=sendonly
+a=msid:777ddc27-23b0-4a54-950f-52e2d21d1201 2dce37c0-75d4-4df3-ad7f-cc3b5e7e8cac
+a=rtcp-mux
+a=rtpmap:107 H264/90000
+a=rtcp-fb:107 goog-remb
+a=rtcp-fb:107 transport-cc
+a=rtcp-fb:107 ccm fir
+a=rtcp-fb:107 nack
+a=rtcp-fb:107 nack pli
+a=fmtp:107 level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f
+a=rtpmap:99 rtx/90000
+a=fmtp:99 apt=107
+a=ssrc-group:FID 4204800147 1726688271
+a=ssrc:4204800147 cname:MCZO5MLYf1vIXRgO
+a=ssrc:1726688271 cname:MCZO5MLYf1vIXRgO
+] type[push] resp[{"errNo":0,"errMsg":"success","data":null}] totalCost[2.818ms] 
