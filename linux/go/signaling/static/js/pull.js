@@ -11,10 +11,7 @@ var uid = $("#uid").val();
 var streamName = $("#streamName").val();
 var audio = $("#audio").val();
 var video = $("#video").val();
-<<<<<<< HEAD
-=======
 var isDtls = $("#isDtls").val();
->>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
 var offer = "";
 var pc;
 const config = {};
@@ -25,11 +22,7 @@ function startPull() {
     console.log("send pull: /signaling/pull");
 
     $.post("/signaling/pull",
-<<<<<<< HEAD
-        {"uid": uid, "streamName": streamName, "audio": audio, "video": video},
-=======
         {"uid": uid, "streamName": streamName, "audio": audio, "video": video, "isDtls": isDtls},
->>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
         function(data, textStatus) {
             console.log("push response: " + JSON.stringify(data));
             if ("success" == textStatus && 0 == data.errNo) {

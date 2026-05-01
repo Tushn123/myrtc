@@ -11,10 +11,7 @@ var uid = $("#uid").val();
 var streamName = $("#streamName").val();
 var audio = $("#audio").val();
 var video = $("#video").val();
-<<<<<<< HEAD
-=======
 var isDtls = $("#isDtls").val();
->>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
 var offer = "";
 var pc;
 const config = {};
@@ -25,11 +22,7 @@ function startPush() {
     console.log("send push: /signaling/push");
 
     $.post("/signaling/push",
-<<<<<<< HEAD
-        {"uid": uid, "streamName": streamName, "audio": audio, "video": video},
-=======
         {"uid": uid, "streamName": streamName, "audio": audio, "video": video, "isDtls": isDtls},
->>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
         function(data, textStatus) {
             console.log("push response: " + JSON.stringify(data));
             if ("success" == textStatus && 0 == data.errNo) {
@@ -172,9 +165,6 @@ function handleError(error) {
 function setRemoteDescriptionSuccess() {
     console.log("pc set remote description success");
     console.log("request screen share");
-<<<<<<< HEAD
-    window.postMessage({type: "SS_UI_REQUEST", text: "push"}, "*");
-=======
     // 弃用屏幕共享插件
     // window.postMessage({type: "SS_UI_REQUEST", text: "push"}, "*");
     // 无需安装插件
@@ -184,7 +174,6 @@ function setRemoteDescriptionSuccess() {
     };
     navigator.mediaDevices.getDisplayMedia(constraints).then(
         handleSuccess).catch(handleError);
->>>>>>> 0fa258316b07f8586ed8420d9aa473420bb7c048
 }
 
 function createSessionDescriptionSuccess(answer) {
