@@ -7,6 +7,8 @@ log:
 ice:
     min_port: 10025
     max_port: 10026
+    # ECS / NAT: no public IPv4 on eth0 — set elastic/public IP for ICE SDP (UDP still binds 0.0.0.0)
+    # advertise_ip: 1.2.3.4
 rtp_rtcp:
     # 单位ms
     rtcp_report_timer_interval: 100

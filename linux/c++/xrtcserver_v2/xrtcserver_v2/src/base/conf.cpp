@@ -44,6 +44,10 @@ int LoadGeneralConf(const char* filename, GeneralConf* conf) {
         conf->log_to_stderr = config["log"]["log_to_stderr"].as<bool>();
         conf->ice_min_port = config["ice"]["min_port"].as<int>();
         conf->ice_max_port = config["ice"]["max_port"].as<int>();
+        if (config["ice"]["advertise_ip"]) {
+            conf->ice_advertise_ipv4 =
+                config["ice"]["advertise_ip"].as<std::string>();
+        }
         conf->rtcp_report_timer_interval = 
             config["rtp_rtcp"]["rtcp_report_timer_interval"].as<int>();
     } catch (const YAML::Exception& e) {

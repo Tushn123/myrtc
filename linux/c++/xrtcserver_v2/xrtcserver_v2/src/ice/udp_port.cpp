@@ -18,6 +18,7 @@
 #include "ice/udp_port.h"
 
 #include <sstream>
+#include <netinet/in.h>
 
 #include <rtc_base/logging.h>
 #include <rtc_base/crc32.h>
@@ -66,7 +67,11 @@ int UDPPort::CreateIceCandidate(Network* network, int min_port, int max_port,
     
     sockaddr_in addr_in;
     addr_in.sin_family = network->ip().family();
-    addr_in.sin_addr = network->ip().ipv4_address();
+    if (network->bind_inaddr_any()) {
+        addr_in.sin_addr.s_addr = htonl(INADDR_ANY);
+    } else {
+        addr_in.sin_addr = network->ip().ipv4_address();
+    }
     if (SockBind(socket_, (struct sockaddr*)&addr_in, sizeof(sockaddr), 
                 min_port, max_port) != 0)
     {
